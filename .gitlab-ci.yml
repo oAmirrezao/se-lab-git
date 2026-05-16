@@ -4,23 +4,11 @@ stages:
   - build
   - deploy
 
-cache:
-  paths:
-    - node_modules/
-
-build:
-  stage: build
-  script:
-    - npm ci
-    - npm run build
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 hour
-
 pages:
   stage: deploy
   script:
+    - npm ci
+    - npm run build
     - mv dist public
   artifacts:
     paths:
